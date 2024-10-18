@@ -3,8 +3,10 @@ import { SidePanel } from "../components/SidePanel";
 
 export const MainWindow: React.FC = () => {
   return (
-    <div className="App">
+    <div>
       <SidePanel />
     </div>
   );
 };
+
+export default MainWindow;
