@@ -1,0 +1,6 @@
+﻿services:
+  messaging.api:
+    image: messaging.api
+    build:
+      context: .
+      dockerfile: Messaging.API/Dockerfile
