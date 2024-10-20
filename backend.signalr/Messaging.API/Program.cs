@@ -21,7 +21,18 @@ builder.Services.AddSwaggerGen(c =>
     c.AddSignalRSwaggerGen();
 });
 
-
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", builder =>
+    {
+        builder
+            .WithOrigins("http://localhost:8080")  // Replace with your frontend URL
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
 
 var app = builder.Build();
 
@@ -31,9 +42,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Enable CORS middleware
+app.UseCors("AllowFrontend");
+
 app.MapHub<MessageHub>("/messageHub");
-
-app.UseHttpsRedirection();
-
 
 app.Run();

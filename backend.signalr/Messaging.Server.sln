@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2383A3BC-33D1-4B54-8903-A80772D07BA7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C55D0E44-3D1A-4419-90D6-1FEB4BE4AEF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,5 +21,9 @@ Global
 		{85D15AA8-E147-4A9C-BF32-860D9915FEF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85D15AA8-E147-4A9C-BF32-860D9915FEF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85D15AA8-E147-4A9C-BF32-860D9915FEF8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C55D0E44-3D1A-4419-90D6-1FEB4BE4AEF2} = {2383A3BC-33D1-4B54-8903-A80772D07BA7}
+		{85D15AA8-E147-4A9C-BF32-860D9915FEF8} = {C55D0E44-3D1A-4419-90D6-1FEB4BE4AEF2}
 	EndGlobalSection
 EndGlobal
