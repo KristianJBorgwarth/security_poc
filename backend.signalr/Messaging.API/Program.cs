@@ -14,6 +14,10 @@ builder.Services.AddScoped<IMessageService, MessageService>();
 
 #endregion
 
+#region Persistence Configuration
+
+#endregion
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
