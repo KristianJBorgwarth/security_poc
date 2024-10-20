@@ -1,8 +1,13 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { App } from "./App";
 
-const App = () => {
-  return <h1>Hello, Electron and React!</h1>;
-};
+const container = document.getElementById("root");
+const root = ReactDOM.createRoot(container as HTMLElement); // Create root
 
-ReactDOM.render(<App />, document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
