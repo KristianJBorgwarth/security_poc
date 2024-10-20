@@ -5,7 +5,8 @@ export class MessageHubService {
 
     constructor(user: string) {
         this.connection = new signalR.HubConnectionBuilder()
-            .withUrl('http://localhost:5000/messagehub/?user=${user}')
+            .withUrl(`https://localhost:44374/messagehub/?user=${user}`) // use backticks for template strings
+
             .withAutomaticReconnect()
             .build();
     }
@@ -28,8 +29,8 @@ export class MessageHubService {
     async sendMessage(userTag: string, message: string) {
         try {
             await this.connection.invoke('SendMessageAsync', userTag, message);
-        } catch (err) {
-            console.error('Error while sending message:', err);
+        } catch (errr) {
+            console.error('Error while sending message:', errr);
         }
     }
 }

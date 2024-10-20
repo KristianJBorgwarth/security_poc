@@ -9,10 +9,16 @@ export const SidePanel: React.FC = () => {
     setPaneType("chats");
   };
 
+  const closePane = () => {
+    setPaneType(null);
+  };
+
   return (
     <div className="bg-zinc-800 text-white w-[60px] h-screen flex flex-col justify-between py-4 border-r border-zinc-600">
       <div className="flex flex-col items-center space-y-8">
-        <HomeIcon className="w-6 h-6 cursor-pointer hover:text-gray-300" />
+        <button onClick={closePane}>
+          <HomeIcon className="w-6 h-6 cursor-pointer hover:text-gray-300" />
+        </button>
 
         <button onClick={openChatsPane}>
           <ChatBubbleOvalLeftIcon className="w-6 h-6 cursor-pointer hover:text-gray-300" />

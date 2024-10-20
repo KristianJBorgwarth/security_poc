@@ -12,6 +12,7 @@ public class MessageHub(IMessageService messageService) : Hub
     [SignalRMethod]
     public async Task SendMessageAsync(string user, string message)
     {
+        Console.WriteLine("Sending message to user: " + user);
         if (_connections.TryGetValue(user, out var connectionId))
         {
             await messageService.SendMessageAsync(connectionId, message);
