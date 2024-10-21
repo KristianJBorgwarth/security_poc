@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Messaging.API.Services;
 using Messaging.Application.Features.PreKey.Commands.Create;
+using Messaging.Application.Features.PreKey.Queries.GetPreKeyBundle;
 using Messaging.Domain.Common;
 using Microsoft.AspNetCore.SignalR;
 using SignalRSwaggerGen.Attributes;
@@ -29,6 +30,13 @@ public class MessageHub(
     public async Task<Result> UploadPreKeysAsync(AddPreKeysCommand cmd)
     {
         var result = await sender.Send(cmd);
+        return result;
+    }
+    
+    [SignalRMethod]
+    public async Task<Result> GetPreyKeyBundleAsync(GetPreKeyBundleQuery query)
+    {
+        var result = await sender.Send(query);
         return result;
     }
 
