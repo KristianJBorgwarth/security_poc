@@ -1,6 +1,14 @@
 ﻿services:
-  messaging.api:
-    image: messaging.api
-    build:
-      context: .
-      dockerfile: Messaging.API/Dockerfile
+  db:
+    image: postgres:latest
+    container_name: chat-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5439:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:

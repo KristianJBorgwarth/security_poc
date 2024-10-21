@@ -1,7 +1,26 @@
+using System.Reflection;
 using Messaging.API.Hubs;
 using Messaging.API.Services;
+using Messaging.Persistence.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+
+#region Configuration
+
+var env = builder.Environment;
+
+var configuration = builder.Configuration;
+configuration
+    .AddJsonFile("appsettings.json", false, true)
+    .AddEnvironmentVariables();
+
+if (env.IsDevelopment())
+{
+    configuration.AddJsonFile($"appsettings.{Environments.Development}.json", true, true);
+    configuration.AddUserSecrets(Assembly.GetExecutingAssembly(), true);
+}
+#endregion
+
 
 #region SignalR
 builder.Services.AddSignalR();
@@ -16,6 +35,8 @@ builder.Services.AddScoped<IMessageService, MessageService>();
 
 #region Persistence Configuration
 
+builder.Services.AddPersistence(builder.Configuration);
+
 #endregion
 
 builder.Services.AddEndpointsApiExplorer();
@@ -25,13 +46,12 @@ builder.Services.AddSwaggerGen(c =>
     c.AddSignalRSwaggerGen();
 });
 
-// Add CORS policy
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", builder =>
     {
         builder
-            .WithOrigins("http://localhost:8080")  // Replace with your frontend URL
+            .WithOrigins("http://localhost:8080")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
