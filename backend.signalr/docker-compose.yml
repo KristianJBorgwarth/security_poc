@@ -9,6 +9,16 @@
       - "5439:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
-
+  
+  logs:
+    image: datalust/seq:latest
+    container_name: logs
+    environment:
+      - ACCEPT_EULA=Y
+      - SEQ_USER=${SEQ_USER}
+      - SEQ_PASSWORD=${SEQ_PASSWORD}
+    
+    ports:
+      - "5342:80"
 volumes:
   db_data:

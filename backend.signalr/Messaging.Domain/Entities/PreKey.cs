@@ -13,14 +13,13 @@ public class PreKey : Entity
     public Guid UserId { get; init; }
     public User User { get; set; } = null!;
 
-    public PreKey(int keyId, byte[] publicKey, byte[]? signature, PreKeyType keyType, bool isUsed, Guid userId)
+    public PreKey(int keyId, byte[] publicKey, byte[]? signature, PreKeyType keyType, Guid userId)
     {
         Id = Guid.NewGuid();
         KeyId = keyId;
         PublicKey = publicKey;
         Signature = signature;
         KeyType = keyType;
-        IsUsed = isUsed;
         UserId = userId;
     }
 

@@ -2,7 +2,11 @@
 
 public abstract class Entity
 {
-    public Guid Id { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+    public Guid Id { get; protected init; }
+    public DateTime CreatedAt { get; private set; }
+    public DateTime UpdatedAt { get; private set; }
+
+    public void SetCreatedTime() => CreatedAt = DateTime.UtcNow;
+    
+    public void SetUpdatedTime() => UpdatedAt = DateTime.UtcNow;
 }

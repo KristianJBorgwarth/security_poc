@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Messaging.Domain.Abstracts;
+using Messaging.Domain.Enums;
 
 namespace Messaging.Domain.Entities;
 
@@ -17,8 +18,9 @@ public class User : Entity
         IdentityPublicKey = identityPublicKey;
     }
 
-    public void AddPreKey(PreKey preKey)
+    public void AddPreKey(int keyId, byte[] publicKey, byte[]? signature, PreKeyType keyType)
     {
+        var preKey = new PreKey(keyId, publicKey, signature, keyType, userId: Id);
         _preKeys.Add(preKey);
     }
 

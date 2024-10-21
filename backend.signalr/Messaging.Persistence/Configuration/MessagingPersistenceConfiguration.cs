@@ -20,6 +20,7 @@ public static class MessagingPersistenceConfiguration
         });
 
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
     }

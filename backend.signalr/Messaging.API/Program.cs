@@ -1,7 +1,9 @@
 using System.Reflection;
 using Messaging.API.Hubs;
 using Messaging.API.Services;
+using Messaging.Application.Configuration;
 using Messaging.Persistence.Configuration;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,16 @@ if (env.IsDevelopment())
 }
 #endregion
 
+#region Logger
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(configuration)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
+#endregion
+
 
 #region SignalR
 builder.Services.AddSignalR();
@@ -32,6 +44,13 @@ builder.Services.AddSignalR();
 builder.Services.AddScoped<IMessageService, MessageService>();
 
 #endregion
+
+#region Application Configuration
+
+builder.Services.AddApplication();
+
+#endregion
+
 
 #region Persistence Configuration
 

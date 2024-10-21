@@ -1,11 +1,12 @@
 ﻿using Messaging.Application.Contracts;
 using Messaging.Domain.Entities;
+using Messaging.Persistence.Data;
 
 namespace Messaging.Persistence.Repositories;
 
-public class UserRepository : IUserRepository
+public class UserRepository(MessagingDbContext ctx) : IUserRepository
 {
-    public Task<User> GetByIdAsync(Guid id)
+    public Task<User?> GetByIdAsync(Guid id)
     {
         throw new NotImplementedException();
     }
