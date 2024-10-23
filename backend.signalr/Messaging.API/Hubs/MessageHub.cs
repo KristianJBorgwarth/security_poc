@@ -1,60 +1,55 @@
 ﻿using MediatR;
 using Messaging.API.Services;
+using Messaging.Application.Features.Connection;
 using Messaging.Application.Features.PreKey.Commands.Create;
 using Messaging.Application.Features.PreKey.Queries.GetPreKeyBundle;
 using Messaging.Domain.Common;
-using Microsoft.AspNetCore.SignalR;
 using SignalRSwaggerGen.Attributes;
 
 namespace Messaging.API.Hubs;
 
 [SignalRHub]
-public class MessageHub(
-    ISender sender,
-    IMessageService messageService)
-    : Hub
+public class MessageHub : BaseHub
 {
-    private static Dictionary<string, string> _connections = new();
+    private readonly IMessageService _messageService;
+    private readonly ISender _sender;
+    
+    public MessageHub(
+        ISender sender, 
+        IMessageService messageService, 
+        IConnectionHandler connectionHandler) 
+        : base(connectionHandler)
+    {
+        _sender = sender;
+        _messageService = messageService;
+    }
 
     [SignalRMethod]
     public async Task SendMessageAsync(string user, string message)
     {
-        Console.WriteLine("Sending message to user: " + user);
-        if (_connections.TryGetValue(user, out var connectionId))
+        var connection = ConnectionHandler.GetConnectionId(Guid.Parse(user));
+        
+        if(connection != null)
         {
-            await messageService.SendMessageAsync(connectionId, message);
+            await _messageService.SendMessageAsync(connection, message);
+        }
+        else
+        {
+            Console.WriteLine("User not found");
         }
     }
 
     [SignalRMethod]
     public async Task<Result> UploadPreKeysAsync(AddPreKeysCommand cmd)
     {
-        var result = await sender.Send(cmd);
+        var result = await _sender.Send(cmd);
         return result;
     }
     
     [SignalRMethod]
     public async Task<Result> GetPreyKeyBundleAsync(GetPreKeyBundleQuery query)
     {
-        var result = await sender.Send(query);
+        var result = await _sender.Send(query);
         return result;
-    }
-
-    public override Task OnConnectedAsync()
-    {
-        var identifier = Context.GetHttpContext().Request.Query["user"];
-        _connections[identifier] = Context.ConnectionId;
-        return base.OnConnectedAsync();
-    }
-
-    public override Task OnDisconnectedAsync(Exception? exception)
-    {
-        var identifier = _connections.FirstOrDefault(x => x.Value == Context.ConnectionId).Key;
-        if (identifier != null)
-        {
-            _connections.Remove(identifier);
-        }
-
-        return base.OnDisconnectedAsync(exception);
     }
 }
