@@ -9,6 +9,13 @@
     // define where to put generated JS files
     "outDir": "../../dist-electron",
     // ignore errors from dependencies
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "strictPropertyInitialization": false,
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "types": ["../contracts/types"]
   }
 }

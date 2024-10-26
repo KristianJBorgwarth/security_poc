@@ -17,11 +17,16 @@
     "dist:win": "npm run transpile:electron && npm run build && electron-builder --win --x64"
   },
   "dependencies": {
+    "@prisma/client": "^5.21.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "reflect-metadata": "^0.2.2",
+    "sqlite3": "^5.1.7",
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
+    "@types/node": "^22.8.1",
     "@types/os-utils": "^0.0.4",
     "@types/plist": "^3.0.5",
     "@types/react": "^18.3.11",
@@ -36,6 +41,8 @@
     "eslint-plugin-react-refresh": "^0.4.13",
     "globals": "^15.11.0",
     "npm-run-all": "^4.1.5",
+    "ts-node": "^10.9.2",
+    "typeorm-ts-node-commonjs": "^0.3.20",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.10.0",
     "vite": "^5.4.9"
