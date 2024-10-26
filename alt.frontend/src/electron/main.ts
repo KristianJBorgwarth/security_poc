@@ -1,9 +1,9 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
-import { generateUUID, IsDevelopment } from './utils.js';
-import { initializeDatabase } from './persistence/utilities.js';
+import { generateUUID, getPreloadPath, IsDevelopment } from './Utilities.js';
 import { User } from './persistence/entities/User.js';
 import { UserRepository } from './persistence/repositories/UserRepository.js';
+import { initializeDatabase } from './persistence/data/DataSource.js';
 
 app.on('ready', async () => {
     await initializeDatabase();
@@ -14,6 +14,7 @@ app.on('ready', async () => {
         height: 800,
         webPreferences: {
             nodeIntegration: false,
+            preload: getPreloadPath(),
         }
     });
 
