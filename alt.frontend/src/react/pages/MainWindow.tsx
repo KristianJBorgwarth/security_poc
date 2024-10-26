@@ -30,7 +30,7 @@ export const MainWindow: React.FC = () => {
       {/* MidPane */}
       <ParentPane paneType={paneType} />
 
-      {/* Main content (ChatWindow) */}
+      {/* Main content (ChatWindow) */ y}
       <div className="flex-grow flex flex-col">
         <ChatWindow />
       </div>
