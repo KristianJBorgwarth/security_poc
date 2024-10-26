@@ -1,30 +1,26 @@
 import React from "react";
-import { HomeIcon, UserIcon, Cog6ToothIcon, ChatBubbleOvalLeftIcon, UserGroupIcon } from "@heroicons/react/24/outline";
-import { ChatsPane } from "./ChatsPane";
+import { UserIcon, Cog6ToothIcon, ChatBubbleOvalLeftIcon, UserGroupIcon, Bars3Icon } from "@heroicons/react/24/outline";
 
-export const SidePanel: React.FC = () => {
-  const [paneType, setPaneType] = React.useState<"chats" | "contacts" | null>(null);
-
-  const openChatsPane = () => {
-    setPaneType("chats");
-  };
-
-  const closePane = () => {
-    setPaneType(null);
-  };
-
+export const SidePanel: React.FC<{ onHide: () => void; setPaneType: (type: "chats" | "contacts") => void }> = ({
+  onHide,
+  setPaneType,
+}) => {
   return (
     <div className="bg-zinc-800 text-white w-[60px] h-screen flex flex-col justify-between py-4 border-r border-zinc-600">
       <div className="flex flex-col items-center space-y-8">
-        <button onClick={closePane}>
-          <HomeIcon className="w-6 h-6 cursor-pointer hover:text-gray-300" />
+        <button onClick={onHide} className="p-2 rounded-md text-white hover:bg-zinc-600">
+          <Bars3Icon className="w-6 h-6" />
         </button>
 
-        <button onClick={openChatsPane}>
-          <ChatBubbleOvalLeftIcon className="w-6 h-6 cursor-pointer hover:text-gray-300" />
+        {/*Chat button*/}
+        <button onClick={() => setPaneType("chats")} className="p-2 rounded-md text-white hover:bg-zinc-600">
+          <ChatBubbleOvalLeftIcon className="w-6 h-6 " />
         </button>
 
-        <UserGroupIcon className="w-6 h-6 cursor-pointer hover:text-gray-300" />
+        {/*Contacts*/}
+        <button onClick={() => setPaneType("contacts")} className="p-2 rounded-md text-white hover:bg-zinc-600">
+          <UserGroupIcon className="w-6 h-6 cursor-pointer hover:text-gray-300" />
+        </button>
       </div>
 
       {/* Bottom Icons: User Profile and Settings */}
@@ -32,8 +28,6 @@ export const SidePanel: React.FC = () => {
         <UserIcon className="w-6 h-6 cursor-pointer hover:text-gray-300" />
         <Cog6ToothIcon className="w-6 h-6 cursor-pointer hover:text-gray-300" />
       </div>
-
-      {paneType === "chats" && <ChatsPane />}
     </div>
   );
 };
