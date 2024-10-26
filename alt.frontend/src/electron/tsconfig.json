@@ -15,6 +15,7 @@
     "strictPropertyInitialization": false,
 
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "types": ["../contracts/types"]
   }
 }
