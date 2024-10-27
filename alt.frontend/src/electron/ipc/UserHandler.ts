@@ -9,5 +9,9 @@ export function registerUserhandlers() {
     ipcMain.handle('user:create', async (_event, connectionId, name) => {
         return await userRepo.createAsync(new User(connectionId, name));
     });
+
+    ipcMain.handle('user:exists', async (_event) => {
+        return await userRepo.existsAsync();
+    })
 };
 

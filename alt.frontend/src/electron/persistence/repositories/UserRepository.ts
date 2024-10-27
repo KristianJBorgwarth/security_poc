@@ -1,13 +1,16 @@
 import { Repository } from "typeorm";
-import { IRepository } from "../abstracts/IRepository.js";
 import { User } from "../entities/User.js";
 import { AppDataSource } from "../data/DataSource.js";
+import { IUserRepository } from "../abstracts/IUserRepository.js";
 
-export class UserRepository implements IRepository<User> {
+export class UserRepository implements IUserRepository {
     private readonly userRepository: Repository<User>;
 
     constructor() {
         this.userRepository = AppDataSource.getRepository(User);
+    }
+    async existsAsync(): Promise<boolean> {
+        return await this.userRepository.count() > 0;
     }
 
     async createAsync(user: User): Promise<User> {
