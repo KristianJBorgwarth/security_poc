@@ -24,7 +24,7 @@ const CreateUserPage: React.FC = () => {
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-zinc-950 text-white">
       <div className="flex flex-col items-center w-full max-w-xs">
-        <h1 className="text-2xl font-bold mb-6 text-center text-white">LOGIN</h1>
+        <h1 className="text-2xl font-bold mb-6 text-center text-white">REGISTER</h1>
         <form onSubmit={createUser} className="flex flex-col items-center w-full space-y-4">
           <div className="w-full">
             <InputBox type="text" placeholder="Usename" value={username} onChange={e => setUsername(e.target.value)} />
@@ -36,7 +36,7 @@ const CreateUserPage: React.FC = () => {
               onChange={e => setConnectionId(e.target.value)}
             />
           </div>
-          <Button type="submit" text="Login" />
+          <Button type="submit" text="Register" />
         </form>
       </div>
     </div>
