@@ -7,7 +7,7 @@ export const SidePanel: React.FC<{ onHide: () => void; setPaneType: (type: "chat
   setPaneType,
 }) => {
   return (
-    <div className="bg-zinc-800 text-white w-[60px] h-screen flex flex-col justify-between py-3 border-r border-zinc-600">
+    <div className="bg-zinc-800 text-white w-[60px] h-screen flex flex-col justify-between py-2 border-r border-zinc-600">
       <div className="flex flex-col items-center space-y-4">
         <SidePanelToggle onClick={onHide} />
 
