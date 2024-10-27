@@ -1,15 +1,18 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import { MainWindow } from "./pages/MainWindow";
 import CreateUserPage from "./pages/LoginPage";
+import StartUpRouter from "./routing/StartUpRouter";
 
 const App: React.FC = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<CreateUserPage />} />
-        <Route path="/main" element={<MainWindow />} />
-      </Routes>
+      <StartUpRouter>
+        <Routes>
+          <Route path="/" element={<CreateUserPage />} />
+          <Route path="/main" element={<MainWindow />} />
+        </Routes>
+      </StartUpRouter>
     </Router>
   );
 };
