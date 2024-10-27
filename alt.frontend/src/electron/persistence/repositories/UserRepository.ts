@@ -9,6 +9,7 @@ export class UserRepository implements IUserRepository {
     constructor() {
         this.userRepository = AppDataSource.getRepository(User);
     }
+
     async existsAsync(): Promise<boolean> {
         return await this.userRepository.count() > 0;
     }

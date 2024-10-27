@@ -1,6 +1,6 @@
 import React from "react";
 import { ChatsPane } from "./ChatsPane";
-import { ContactsPane } from "./ContactsPane";
+import { ContactsPane } from "./contact/ContactsPane";
 
 interface ParentPaneProps {
   paneType: "chats" | "contacts";

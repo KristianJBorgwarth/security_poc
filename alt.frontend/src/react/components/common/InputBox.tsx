@@ -16,7 +16,7 @@ const InputBox: React.FC<InputBoxProps> = ({ type, placeholder, value, onChange,
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={`w-80 h-10 bg-zinc-800 text-white border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 focus:outline-none ${
+        className={`w-80 h-10 bg-zinc-800 text-white border border-gray-600 ${
           isRounded ? "rounded-full" : "rounded-md"
         } p-2`}
       />

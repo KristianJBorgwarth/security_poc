@@ -5,6 +5,7 @@ import {
     ManyToOne,
     OneToOne,
     CreateDateColumn,
+    JoinColumn,
 } from 'typeorm';
 import { User } from './User.js';
 import { Chat } from './Chat.js';
@@ -25,7 +26,11 @@ export class Contact {
     @CreateDateColumn()
     createdAt!: Date;
 
+    @Column('uuid')
+    userId!: string;
+
     @ManyToOne(() => User, (user) => user.contacts)
+    @JoinColumn({ name: 'userId' })
     user!: Promise<User>;
 
     @OneToOne(() => Session, (session) => session.contact)
@@ -36,4 +41,10 @@ export class Contact {
 
     @OneToOne(() => Chat, (chat) => chat.contact)
     chat!: Promise<Chat>;
+
+    constructor(connectionId: string, nickname: string, userId: string) {
+        this.connectionId = connectionId;
+        this.nickname = nickname;
+        this.userId = userId;
+    }
 }

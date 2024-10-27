@@ -5,7 +5,13 @@ export const content = [
   './src/**/*.{js,ts,jsx,tsx}', // Source files
 ];
 export const theme = {
-  extend: {},
+  extend: {
+    colors: {
+      beige:{
+        500: '#F5F5DC',
+      }
+    }
+  },
 };
 export const plugins = [];
 
