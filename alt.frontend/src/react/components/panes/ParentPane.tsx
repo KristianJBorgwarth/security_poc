@@ -1,13 +1,22 @@
 import React from "react";
 import { ChatsPane } from "./ChatsPane";
+import { ContactsPane } from "./ContactsPane";
 
-const ContactsPane: React.FC = () => <div className="p-4">Contacts List</div>;
+interface ParentPaneProps {
+  paneType: "chats" | "contacts";
+  isSidePanelVisible: boolean;
+  toggleSidePanel: () => void;
+}
 
-export const ParentPane: React.FC<{ paneType: "chats" | "contacts" | null }> = ({ paneType }) => {
+export const ParentPane: React.FC<ParentPaneProps> = ({ paneType, isSidePanelVisible, toggleSidePanel }) => {
   return (
-    <div className="w-1/4 bg-zinc-800 h-full border-r border-zinc-600">
-      {paneType === "chats" && <ChatsPane />}
-      {paneType === "contacts" && <ContactsPane />}
+    <div className="bg-zinc-800 h-full border-r border-zinc-600 transition-all duration-300 min-w-[250px] w-1/3 relative">
+      {/* Conditionally Render Subpane Content */}
+      {paneType === "chats" ? (
+        <ChatsPane isSidePanelVisible={isSidePanelVisible} toggleSidePanel={toggleSidePanel} />
+      ) : (
+        <ContactsPane />
+      )}
     </div>
   );
 };

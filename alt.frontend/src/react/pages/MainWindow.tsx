@@ -6,32 +6,26 @@ import ParentPane from "../components/panes/ParentPane";
 
 export const MainWindow: React.FC = () => {
   const [isSidePanelVisible, setSidePanelVisible] = useState(true);
-  const [paneType, setPaneType] = React.useState<"chats" | "contacts" | null>(null);
+  const [paneType, setPaneType] = useState<"chats" | "contacts">("chats");
 
   return (
     <div className="flex h-screen w-screen bg-zinc-900">
       {/* SidePanel - conditional rendering */}
       {isSidePanelVisible && (
-        <div className="relative">
+        <div className="w-16 bg-zinc-800">
           <SidePanel onHide={() => setSidePanelVisible(false)} setPaneType={setPaneType} />
         </div>
       )}
 
-      {/* Show Button when SidePanel is hidden */}
-      {!isSidePanelVisible && (
-        <button
-          onClick={() => setSidePanelVisible(true)}
-          className="absolute top-4 left-4 p-2 rounded-md text-white hover:bg-zinc-600"
-        >
-          <Bars3Icon className="w-6 h-6" />
-        </button>
-      )}
+      {/* MidPane (ParentPane) with dynamic width */}
+      <ParentPane
+        paneType={paneType}
+        isSidePanelVisible={isSidePanelVisible}
+        toggleSidePanel={() => setSidePanelVisible(!isSidePanelVisible)}
+      />
 
-      {/* MidPane */}
-      <ParentPane paneType={paneType} />
-
-      {/* Main content (ChatWindow) */ y}
-      <div className="flex-grow flex flex-col">
+      {/* Main content (ChatWindow) */}
+      <div className="flex-grow bg-zinc-900">
         <ChatWindow />
       </div>
     </div>

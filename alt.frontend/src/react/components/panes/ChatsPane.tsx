@@ -1,22 +1,33 @@
 import React from "react";
+import { PlusIcon } from "@heroicons/react/24/outline";
+import SidePanelToggle from "../common/SidePanelToggle";
+import SearchBar from "../common/SearchBar";
 
-export const ChatsPane: React.FC = () => {
-  const chatsList = [
-    "Chat 1",
-    "Chat 2",
-    "Chat 3",
-    "Chat 4",
-    "Chat 5",
-    "Chat 6",
-    "Chat 7",
-    "Chat 8",
-    "Chat 9",
-    "Chat 10",
-  ];
+interface ChatsPaneProps {
+  isSidePanelVisible: boolean;
+  toggleSidePanel: () => void;
+}
+
+export const ChatsPane: React.FC<ChatsPaneProps> = ({ isSidePanelVisible, toggleSidePanel }) => {
+  const chatsList = ["Chat 1", "Chat 2", "Chat 3"];
 
   return (
-    <div className="bg-zinc-800 text-white w-[250px] h-screen p-4 absolute left-[60px] top-0">
-      <h2 className="text-lg mb-4">Chats List</h2>
+    <div className="text-white p-2 relative">
+      {/* Title and Top Buttons */}
+      <div className="flex items-center justify-between mb-4">
+        {!isSidePanelVisible && <SidePanelToggle onClick={toggleSidePanel} />}
+
+        <h2 className=" p-2 text-lg font-bold justify-center">Chats</h2>
+
+        <button className="rounded-md text-white hover:bg-zinc-600">
+          <PlusIcon className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Search Bar */}
+      <SearchBar />
+
+      {/* Chat List */}
       <ul>
         {chatsList.map((chat, index) => (
           <li key={index} className="py-2 border-b border-gray-500">
@@ -27,3 +38,5 @@ export const ChatsPane: React.FC = () => {
     </div>
   );
 };
+
+export default ChatsPane;
