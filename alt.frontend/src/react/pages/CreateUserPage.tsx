@@ -10,7 +10,6 @@ const CreateUserPage: React.FC = () => {
 
   const createUser = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Creating user...");
     window.electron
       .createUser(username, connectionID)
       .then(() => {
@@ -36,7 +35,7 @@ const CreateUserPage: React.FC = () => {
               onChange={e => setConnectionId(e.target.value)}
             />
           </div>
-          <Button type="submit" text="Register" />
+          <Button type="submit" text="Register" disabled={username === "" || connectionID === ""} />
         </form>
       </div>
     </div>
