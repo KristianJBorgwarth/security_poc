@@ -18,10 +18,13 @@
   },
   "dependencies": {
     "@prisma/client": "^5.21.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "reflect-metadata": "^0.2.2",
     "sqlite3": "^5.1.7",
+    "tailwindcss": "^3.4.14",
     "typeorm": "^0.3.20"
   },
   "devDependencies": {
