@@ -18,7 +18,7 @@ export const ChatsPane: React.FC<ChatsPaneProps> = ({ isSidePanelVisible, toggle
         {/* Left Toggle Button */}
         {!isSidePanelVisible && <SidePanelToggle onClick={toggleSidePanel} />}
 
-        {/* Centered Chats Title */}
+        {/* Chats Title */}
         <div className="flex-grow text-center">
           <h2 className="text-lg font-bold">Chats</h2>
         </div>
